@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div>
-      <div>신채연</div>
-    </div>
+    <main>
+      <h1>신채연</h1>
+    </main>
   );
 }
