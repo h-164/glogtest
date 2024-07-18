@@ -1,5 +1,16 @@
-import { postNotice } from "../../../lib/notice-db";
+import { getNotices, postNotice } from "../../../lib/notice-db";
 import { NextRequest } from "next/server";
+
+
+export async function GET(request: NextRequest){
+  try {
+    const data = await getNotices();
+    return Response.json({ data });
+ 
+  } catch (error) {
+    return Response.json({ error }, { status: 500 });
+  }
+}
 
 export async function POST(request:NextRequest){
     try {
@@ -9,6 +20,6 @@ export async function POST(request:NextRequest){
     } catch (error:any) {
       console.error(error.response);
       
-      return Response.json({ error: 'An error occurred' }, { status: 400 });
+      return Response.json({ error}, { status: 500 });
     }
 }
