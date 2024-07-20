@@ -12,11 +12,12 @@ export default async function Home() {
       <h1>신채돌</h1>
       <h1>채ehf</h1>
       <Link href="/write">채co</Link>
-      {/* {data.data.notices.map((notice: any) => {
+      {data.data.notices.map((notice: any) => (
         <>
-          <h1>{notice.title}</h1>;<p>{notice.body}</p>
-        </>;
-      })} */}
+          <h1>{notice.title}</h1>
+          <p>{notice.body}</p>
+        </>
+      ))}
     </main>
   );
 }
