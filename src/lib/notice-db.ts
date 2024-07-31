@@ -21,3 +21,12 @@ export const postNotice = async ({
 
     return {notice};
 }
+
+export const deleteNotice = async(_id:string)=>{
+    await connectDb();
+    const {deletedCount} = await Notice.deleteOne({_id});
+
+    if(deletedCount === 0){
+        throw new Error("failed to delete")
+    }
+}
