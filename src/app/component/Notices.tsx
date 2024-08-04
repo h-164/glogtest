@@ -1,20 +1,19 @@
 "use client";
 
 import { Notice } from "@/types/Notice";
+import { useContext } from "react";
+import { NoticeContext } from "@/provider/notices-provider";
 
-export const Notices = ({ data }: { data: Notice[] }) => {
+export const Notices = () => {
+  const { notices, deleteNotice } = useContext(NoticeContext);
+
   const handleDelete = async (_id: string) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/notices?_id=${_id}`,
-      { method: "DELETE" }
-    );
-    const data = await response.json();
-    console.log(data);
+    deleteNotice(_id);
   };
 
   return (
     <>
-      {data.map((notice: any) => (
+      {notices?.map((notice: Notice) => (
         <>
           <h1>{notice.title}</h1>
           <p>{notice.body}</p>

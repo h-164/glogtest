@@ -1,10 +1,15 @@
 "use client";
 
+import { NoticeContext } from "@/provider/notices-provider";
 import Link from "next/link";
-import { FormEvent } from "react";
+import { FormEvent, useContext } from "react";
+import { useRouter } from "next/router";
 
 export default function write() {
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const { addNotice } = useContext(NoticeContext);
+  // const { push } = useRouter();
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formElement = event.currentTarget.elements;
@@ -21,6 +26,9 @@ export default function write() {
       },
       body: JSON.stringify({ title, body }),
     });
+
+    await addNotice({ title, body });
+    // push("/");
   };
 
   return (

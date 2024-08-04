@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import NoticesProvider from "@/provider/notices-provider";
+import { clientApi } from "@/lib/client-api/notices";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,14 +16,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await clientApi.getNotices();
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NoticesProvider initialNotices={data.notices}>
+          {children}
+        </NoticesProvider>
+      </body>
     </html>
   );
 }
