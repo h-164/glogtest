@@ -1,7 +1,13 @@
-export default function Home() {
+import Link from "next/link";
+import { Notices } from "./component/Notices";
+
+export default async function Home() {
   return (
-    <div>
-      <div>신채연</div>
-    </div>
+    <main>
+      <h1>신채돌</h1>
+      <h1>채ehf</h1>
+      <Link href="/write">채co</Link>
+      <Notices />
+    </main>
   );
 }
