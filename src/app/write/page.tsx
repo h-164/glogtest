@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FormEvent, useContext } from "react";
 import { useRouter } from "next/router";
 
-export default function write() {
+export default function Write() {
   const { addNotice } = useContext(NoticeContext);
   // const { push } = useRouter();
 
