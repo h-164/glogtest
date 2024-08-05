@@ -10,7 +10,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = params.id;
-  const profileTitle = await fetch(`http://localhost:3000/api?name=${id}`).then(
+  const profileTitle = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`).then(
     (res) => res.json()
   );
 
