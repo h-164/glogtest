@@ -7,6 +7,8 @@ import { NoticeContext } from "@/provider/notices-provider";
 export const Notices = () => {
   const { notices, deleteNotice, voteNotice } = useContext(NoticeContext);
 
+  notices.sort((a, b) => b.count - a.count);
+
   const handleDelete = async (_id: string) => {
     deleteNotice(_id);
   };
@@ -21,7 +23,9 @@ export const Notices = () => {
     <>
       {notices?.map((notice: Notice) => (
         <>
-          <h1>{notice.title}</h1>
+          <h1>
+            {notices.indexOf(notice) + 1}등 {notice.title}
+          </h1>
           <p>{notice.body}</p>
           <p>{notice.date}</p>
           <p>{notice.count}</p>

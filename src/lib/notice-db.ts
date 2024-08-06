@@ -40,6 +40,7 @@ export const updateNotice = async ({
   }) => {
     await connectDb();
     const { matchedCount } = await Notice.updateOne({ _id }, { count });
+
   
     if (matchedCount === 0) {
       throw new Error("No document found");
