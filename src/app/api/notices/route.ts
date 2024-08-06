@@ -1,4 +1,4 @@
-import { deleteNotice, getNotices, postNotice } from "../../../lib/notice-db";
+import { deleteNotice, getNotices, postNotice, updateNotice } from "../../../lib/notice-db";
 import { NextRequest } from "next/server";
 
 
@@ -14,8 +14,8 @@ export async function GET(request: NextRequest){
 
 export async function POST(request:NextRequest){
     try {
-        const {title, body, count} = await request.json();
-        const data = await postNotice({title,body, count});
+        const {title, body} = await request.json();
+        const data = await postNotice({title, body});
         return Response.json({ data });
     } catch (error:any) {
       console.error(error.response);
@@ -38,3 +38,21 @@ export async function DELETE(request:NextRequest){
   }catch(error){
     return Response.json({error},{status:500})
 }}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const { searchParams } = request.nextUrl;
+    const _id = searchParams.get("_id");
+
+    if (!_id) {
+      return Response.json({ error: "_id is required" });
+    }
+
+    const { count} = await request.json();
+    const data = await updateNotice({ _id, count });
+
+    return Response.json({ data });
+  } catch (error) {
+    return Response.json({ error }, { status: 500 });
+  }
+}

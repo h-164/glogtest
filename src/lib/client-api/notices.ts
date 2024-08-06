@@ -46,21 +46,17 @@ const deleteNotice = async (_id: string): Promise<{ response: Response }> => {
   return { response };
 };
 
-const patchNotice = async ({
+const voteNotice = async ({
   _id,
-  title,
-  body,
   count
 }: {
   _id: string;
-  title: string;
-  body: string;
   count:number;
 }) => {
   const response = await fetch(`${NOTICES_END_POINT}?_id=${_id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, body, count }),
+    body: JSON.stringify({ count }),
   });
   const { data } = await response.json();
 
@@ -72,5 +68,5 @@ export const clientApi = {
   getNotice,
   postNotice,
   deleteNotice,
-  patchNotice,
+  voteNotice,
 } as const;
