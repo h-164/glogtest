@@ -50,15 +50,17 @@ const patchNotice = async ({
   _id,
   title,
   body,
+  count
 }: {
   _id: string;
   title: string;
   body: string;
+  count:number;
 }) => {
   const response = await fetch(`${NOTICES_END_POINT}?_id=${_id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, body }),
+    body: JSON.stringify({ title, body, count }),
   });
   const { data } = await response.json();
 

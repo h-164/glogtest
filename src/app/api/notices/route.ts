@@ -14,8 +14,8 @@ export async function GET(request: NextRequest){
 
 export async function POST(request:NextRequest){
     try {
-        const {title, body} = await request.json();
-        const data = await postNotice({title,body});
+        const {title, body, count} = await request.json();
+        const data = await postNotice({title,body, count});
         return Response.json({ data });
     } catch (error:any) {
       console.error(error.response);

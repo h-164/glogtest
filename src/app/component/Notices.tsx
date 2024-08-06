@@ -18,6 +18,7 @@ export const Notices = () => {
           <h1>{notice.title}</h1>
           <p>{notice.body}</p>
           <p>{notice.date}</p>
+          <p>{notice.count}</p>
           <button onClick={() => handleDelete(notice._id)}>delete</button>
         </>
       ))}
