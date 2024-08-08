@@ -26,7 +26,7 @@ export default function Write() {
       },
       body: JSON.stringify({ title, body }),
       cache: "no-cache",
-      //캐시 여기
+      //여기 캐시
     });
 
     await addNotice({ title, body });

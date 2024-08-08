@@ -13,7 +13,7 @@ export async function generateMetadata(
   const profileTitle = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`,
     { cache: "no-cache" }
-    //캐시 여기
+    //여기 캐시
   ).then((res) => res.json());
 
   return {
