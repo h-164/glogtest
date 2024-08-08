@@ -3,6 +3,7 @@ export interface Notice {
     title: string;
     body: string;
     date: string;
+    count:number;
   }
   
   export interface NoticesResponse {

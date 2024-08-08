@@ -30,3 +30,19 @@ export const deleteNotice = async(_id:string)=>{
         throw new Error("failed to delete")
     }
 }
+
+export const updateNotice = async ({
+    _id,
+    count
+  }: {
+    _id: string;
+    count:number;
+  }) => {
+    await connectDb();
+    const { matchedCount } = await Notice.updateOne({ _id }, { count });
+
+  
+    if (matchedCount === 0) {
+      throw new Error("No document found");
+    }
+  };

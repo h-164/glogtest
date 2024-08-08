@@ -6,6 +6,10 @@ export const NoticeSchema = new Schema({
     date: {
         type:Date,
         default:Date.now,
+    },
+    count:{
+        type:Number,
+        default:0
     }
 })
 

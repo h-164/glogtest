@@ -8,12 +8,14 @@ interface NoticesContextValue {
   notices: Notice[];
   addNotice: (pros: { title: string; body: string }) => Promise<void>;
   deleteNotice: (_id: string) => Promise<void>;
+  voteNotice: (_id: string, count: number) => Promise<void>;
 }
 
 const defaultNoticesContextValue: NoticesContextValue = {
   notices: [],
   addNotice: (pros: { title: string; body: string }) => Promise.resolve(),
   deleteNotice: (_id: string) => Promise.resolve(),
+  voteNotice: (_id: string, count: number) => Promise.resolve(),
 };
 
 export const NoticeContext = createContext<NoticesContextValue>(
@@ -47,6 +49,24 @@ export default function NoticesProvider({ children, initialNotices }: Props) {
     }
   };
 
+  const voteNotice = async (_id: string, count: number) => {
+    try {
+      const { response } = await clientApi.voteNotice({ _id, count });
+
+      if (response.status !== 200) {
+        throw new Error("error");
+      }
+
+      setNotices((prev) =>
+        prev.map((notice) =>
+          notice._id === _id ? { ...notice, count } : notice
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const deleteNotice = async (_id: string) => {
     try {
       const { response } = await clientApi.deleteNotice(_id);
@@ -62,7 +82,9 @@ export default function NoticesProvider({ children, initialNotices }: Props) {
   };
 
   return (
-    <NoticeContext.Provider value={{ notices, addNotice, deleteNotice }}>
+    <NoticeContext.Provider
+      value={{ notices, addNotice, deleteNotice, voteNotice }}
+    >
       {children}
     </NoticeContext.Provider>
   );
