@@ -3,6 +3,7 @@
 import { Notice } from "@/types/Notice";
 import { useContext } from "react";
 import { NoticeContext } from "@/provider/notices-provider";
+import Image from "next/image";
 
 export const Notices = () => {
   const { notices, deleteNotice, voteNotice } = useContext(NoticeContext);
@@ -14,7 +15,6 @@ export const Notices = () => {
   };
 
   const handleVote = async (_id: string, count: number) => {
-    console.log(_id, count);
     const voteCount = count + 1;
     voteNotice(_id, voteCount);
   };
@@ -23,6 +23,12 @@ export const Notices = () => {
     <>
       {notices?.map((notice: Notice) => (
         <>
+          <Image
+            src={notice.profileImg}
+            alt={"3bong"}
+            width={100}
+            height={100}
+          ></Image>
           <h1>
             {notices.indexOf(notice) + 1}등 {notice.title}
           </h1>
