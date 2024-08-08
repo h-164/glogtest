@@ -10,9 +10,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = params.id;
-  const profileTitle = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`).then(
-    (res) => res.json()
-  );
+  const profileTitle = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`,
+    { cache: "no-cache" }
+    //캐시 여기
+  ).then((res) => res.json());
 
   return {
     title: profileTitle,

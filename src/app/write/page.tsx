@@ -25,6 +25,8 @@ export default function Write() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, body }),
+      cache: "no-cache",
+      //캐시 여기
     });
 
     await addNotice({ title, body });
