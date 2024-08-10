@@ -2,7 +2,7 @@
 
 import { clientApi } from "@/lib/client-api/notices";
 import { Notice } from "@/types/Notice";
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 
 interface NoticesContextValue {
   notices: Notice[];
@@ -22,12 +22,19 @@ export const NoticeContext = createContext<NoticesContextValue>(
   defaultNoticesContextValue
 );
 
-interface Props extends PropsWithChildren {
-  initialNotices: Notice[];
-}
+export default function NoticesProvider({ children }: PropsWithChildren) {
+  const [notices, setNotices] = useState<Notice[]>([]);
 
-export default function NoticesProvider({ children, initialNotices }: Props) {
-  const [notices, setNotices] = useState(initialNotices);
+  const getNotices = async () => {
+    const data = await clientApi.getNotices();
+    setNotices(data.notices);
+
+    return data;
+  };
+
+  useEffect(() => {
+    getNotices();
+  }, []);
 
   const addNotice = async ({
     title,
