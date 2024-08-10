@@ -25,7 +25,7 @@ export default function Write() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, body }),
-      cache: "no-cache",
+      // cache: "no-cache",
       //여기 캐시
     });
 
