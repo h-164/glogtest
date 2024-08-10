@@ -5,6 +5,7 @@ const NOTICES_END_POINT = `${process.env.NEXT_PUBLIC_BASE_URL}/api/notices`;
 const getNotices = async (): Promise<NoticesResponse> => {
   const res = await fetch(NOTICES_END_POINT);
   //,{ cache: "no-cache" }
+  
   //여기 캐시
   const { data } = await res.json();
 

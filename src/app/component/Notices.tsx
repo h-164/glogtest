@@ -22,7 +22,7 @@ export const Notices = () => {
   return (
     <>
       {notices?.map((notice: Notice) => (
-        <>
+        <div key={notice._id}>
           {/* <Image
             src={notice.profileImg}
             alt={"3bong"}
@@ -39,7 +39,7 @@ export const Notices = () => {
           <button onClick={() => handleVote(notice._id, notice.count)}>
             투표하기
           </button>
-        </>
+        </div>
       ))}
     </>
   );
