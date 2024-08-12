@@ -11,9 +11,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.id;
   const profileTitle = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`,
-    // { cache: "no-cache" }
-    //여기 캐시
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api?name=${id}`
   ).then((res) => res.json());
 
   return {
