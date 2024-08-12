@@ -3,10 +3,7 @@ import { NoticeResponse, NoticesResponse } from "@/types/Notice";
 const NOTICES_END_POINT = `${process.env.NEXT_PUBLIC_BASE_URL}/api/notices`;
 
 const getNotices = async (): Promise<NoticesResponse> => {
-  const res = await fetch(NOTICES_END_POINT);
-  //,{ cache: "no-cache" }
-  
-  //여기 캐시
+  const res = await fetch(NOTICES_END_POINT, { cache: 'no-store' });
   const { data } = await res.json();
 
   return data;
@@ -14,8 +11,6 @@ const getNotices = async (): Promise<NoticesResponse> => {
 
 const getNotice = async (_id: string): Promise<NoticeResponse> => {
   const res = await fetch(`${NOTICES_END_POINT}/${_id}`);
-  //,{ cache: "no-cache"} 
-  //여기 캐시
   const { data } = await res.json();
 
   return data;
