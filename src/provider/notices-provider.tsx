@@ -26,10 +26,6 @@ interface Props extends PropsWithChildren {
   initialNotices: Notice[];
 }
 
-// useEffect(() => {
-//   getNotices();
-// }, []);
-
 export default function NoticesProvider({ children, initialNotices }: Props) {
   const [notices, setNotices] = useState(initialNotices);
 

@@ -3,6 +3,7 @@ import mongoose, {Schema} from "mongoose";
 export const NoticeSchema = new Schema({
     title:String,
     body:String,
+    profileImg:String,
     date: {
         type:Date,
         default:Date.now,

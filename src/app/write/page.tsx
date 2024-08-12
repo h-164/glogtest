@@ -7,16 +7,16 @@ import { useRouter } from "next/router";
 
 export default function Write() {
   const { addNotice } = useContext(NoticeContext);
-  // const { push } = useRouter();
+  const { push } = useRouter();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formElement = event.currentTarget.elements;
-    const tilteElement = formElement.namedItem("title") as HTMLInputElement;
+    const titleElement = formElement.namedItem("title") as HTMLInputElement;
     const bodyElement = formElement.namedItem("body") as HTMLTextAreaElement;
 
-    const title = tilteElement?.value;
+    const title = titleElement?.value;
     const body = bodyElement?.value;
 
     fetch("/api/notices", {
@@ -25,12 +25,10 @@ export default function Write() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, body }),
-      // cache: "no-cache",
-      //여기 캐시
     });
 
     await addNotice({ title, body });
-    // push("/");
+    push("/");
   };
 
   return (

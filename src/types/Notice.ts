@@ -4,6 +4,7 @@ export interface Notice {
     body: string;
     date: string;
     count:number;
+    profileImg:string;
   }
   
   export interface NoticesResponse {
