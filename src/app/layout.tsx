@@ -21,10 +21,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await clientApi.getNotices();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NoticesProvider>{children}</NoticesProvider>
+        <NoticesProvider initialNotices={data.notices}>
+          {children}
+        </NoticesProvider>
       </body>
     </html>
   );

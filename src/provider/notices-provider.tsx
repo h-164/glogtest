@@ -22,19 +22,16 @@ export const NoticeContext = createContext<NoticesContextValue>(
   defaultNoticesContextValue
 );
 
-export default function NoticesProvider({ children }: PropsWithChildren) {
-  const [notices, setNotices] = useState<Notice[]>([]);
+interface Props extends PropsWithChildren {
+  initialNotices: Notice[];
+}
 
-  const getNotices = async () => {
-    const data = await clientApi.getNotices();
-    setNotices(data.notices);
+// useEffect(() => {
+//   getNotices();
+// }, []);
 
-    return data;
-  };
-
-  useEffect(() => {
-    getNotices();
-  }, []);
+export default function NoticesProvider({ children, initialNotices }: Props) {
+  const [notices, setNotices] = useState(initialNotices);
 
   const addNotice = async ({
     title,

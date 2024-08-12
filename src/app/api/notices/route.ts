@@ -6,7 +6,6 @@ export async function GET(request: NextRequest){
   try {
     const data = await getNotices();
     return Response.json({ data });
-   
  
   } catch (error) {
     return Response.json({ error }, { status: 500 });
