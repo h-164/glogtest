@@ -3,7 +3,7 @@
 import { NoticeContext } from "@/provider/notices-provider";
 import Link from "next/link";
 import { FormEvent, useContext } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Write() {
   const { addNotice } = useContext(NoticeContext);
